@@ -18,9 +18,9 @@ def check_disk_full(disk, mmin_absolute, min_percent):
 # Calculate how many free gigabytes
 
 def main():
-    if check_reboot():
-        print("Pending Reboot.")
+    if check_disk_full(disk="/",min_gb=2,min_percent=5):
+        print('disk full')
         sys.exit(1)
-    print('Everythiqng ok.')
+    print('Everything Ok')
     sys.exit(0)
 main()
