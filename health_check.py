@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
 import os
+import psutil
 import shutil
 import sys
 import socket
+
 
 def check_reboot():
     """Returns True if the computer has a pending reboot."""
@@ -24,6 +26,10 @@ def check_root_full():
     """Returns True if the root partition is full, False otherwise."""
     return check_disk_full(disk="/", min_gb=2, min_percent=10)
 
+def check_cpu_containred()
+    """Returns True if the cpu is having too much usage, False otherwise."""
+    return psutil.cpu_percent (1) > 75
+
 def check_no_network():
     """Returns True if it fails to resolve Google's URL, False otherwise."""
     try:
@@ -35,8 +41,9 @@ def check_no_network():
 def main():
     checks = [
             (check_reboot, "Pending Reboot."),
-            (check_root_full, "Root partition full"),
-            (check_no_network, "No working network.1"),
+            (check_root_full, "Root partition full."),
+            (check_cpu_containred, "CPU load Too high."),
+            (check_no_network, "No working network."),
             ]
     everything_ok = True
     for check, msg in checks:
